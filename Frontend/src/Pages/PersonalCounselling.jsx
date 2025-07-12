@@ -72,7 +72,7 @@ const PersonalCounselling = () => {
     };
 
     return (
-        <div className="min-h-screen bg-white font-poppins">
+        <div className="min-h-screen bg-white">
             {/* Hero Section */}
             <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0">
@@ -86,7 +86,7 @@ const PersonalCounselling = () => {
                 </div>
 
                 <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-playfair text-white mb-4 sm:mb-6 leading-tight drop-shadow-2xl animate-fade-up">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-['playfair'] text-white mb-4 sm:mb-6 leading-tight drop-shadow-2xl animate-fade-up">
                         Discover Inner Peace with
                         <br />
                         <span className="text-yellow-400">Personal Counselling</span>
@@ -111,12 +111,12 @@ const PersonalCounselling = () => {
                         </div>
 
                         <div className="animate-fade-in order-1 lg:order-2" style={{ animationDelay: '0.2s' }}>
-                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair text-gray-800 mb-4 sm:mb-6">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-['playfair'] text-gray-800 mb-4 sm:mb-6">
                                 What is Personal Counselling?
                             </h2>
 
                             <div className="space-y-3 sm:space-y-4 text-base sm:text-lg text-gray-600">
-                                <p className="animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                                <p className="animate-fade-in " style={{ animationDelay: '0.3s' }}>
                                     Personal counselling is a safe, confidential space where you can explore your thoughts,
                                     feelings, and experiences with a trained professional who provides support and guidance.
                                 </p>
@@ -139,7 +139,7 @@ const PersonalCounselling = () => {
             {/* Benefits Section */}
             <section className="py-12 sm:py-16 md:py-20 bg-emerald-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair text-center text-gray-800 mb-12 sm:mb-16">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-['playfair'] text-center text-gray-800 mb-12 sm:mb-16">
                         Benefits of Personal Counselling
                     </h2>
 
@@ -166,7 +166,7 @@ const PersonalCounselling = () => {
             {/* How It Works Section */}
             <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-5xl mx-auto">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair text-center text-gray-800 mb-12 sm:mb-16">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-['playfair'] text-center text-gray-800 mb-12 sm:mb-16">
                         How It Works
                     </h2>
 
@@ -196,7 +196,7 @@ const PersonalCounselling = () => {
             <section className="py-12 sm:py-16 md:py-20 bg-[rgba(204,171,219,0.3)]">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <i>
-                        <blockquote className="text-2xl sm:text-3xl md:text-4xl font-playfair italic text-gray-800 animate-fade-in leading-relaxed">
+                        <blockquote className="text-2xl sm:text-3xl md:text-4xl font-['playfair'] italic text-gray-800 animate-fade-in leading-relaxed">
                             "It's okay to not be okay. Talking helps heal the heart and mind."
                         </blockquote>
                     </i>

@@ -1,13 +1,10 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 import LandingPage from "../src/Pages/LandingPage";
 import PersonalCounselling from "./Pages/PersonalCounselling";
 import CareerCounselling from "./Pages/CareerCounselling";
-import './App.css';
+import AbroadCounselling from "./Pages/AbroadCounselling";
 import WorkshopPanels from "./Pages/WorkshopPanels";
+import './App.css';
 function App() {
   return (
     <>
@@ -15,8 +12,10 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/personalcounselling" element={<PersonalCounselling />} />;
+          <Route path="/careercounselling" element={<CareerCounselling />} />
+          <Route path="/abroadcounselling" element={<AbroadCounselling />} />
           <Route path="/careercounselling" element={<CareerCounselling />} />;
-          <Route path="/workshoppanels" element={<WorkshopPanels/>}/>;
+          <Route path="/workshoppanels" element={<WorkshopPanels />} />;
         </Routes>
       </Router>
     </>

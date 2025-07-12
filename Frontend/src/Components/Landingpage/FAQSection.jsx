@@ -64,7 +64,7 @@ const FAQSection = () => {
           <h2 className="text-4xl sm:text-5xl font-bold font-['playfair'] text-gray-800 mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto font-['poppins']">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto font-['playfair']">
             Find answers to common questions about our services and processes
           </p>
         </div>
@@ -86,7 +86,7 @@ const FAQSection = () => {
                 >
                   <div className="flex items-center space-x-4">
                     <Icon className="w-6 h-6 text-[#86e3ce] flex-shrink-0" />
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-800 font-['poppins']">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-800 font-['playfair']">
                       {faq.question}
                     </h3>
                   </div>
@@ -106,7 +106,7 @@ const FAQSection = () => {
                   } overflow-hidden`}
                 >
                   <div className="px-4 sm:px-6 pb-5">
-                    <p className="text-sm sm:text-base text-gray-600 font-['poppins'] pl-10 leading-relaxed">
+                    <p className="text-sm sm:text-base text-gray-600 font-['playfair'] pl-10 leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
@@ -118,7 +118,7 @@ const FAQSection = () => {
 
         {/* Contact CTA */}
         <div className="text-center mt-12">
-          <p className="text-gray-600 font-['poppins'] mb-4">
+          <p className="text-gray-600 font-['playfair'] mb-4">
             Still have questions? We're here to help!
           </p>
           <button

@@ -38,7 +38,7 @@ const ContactSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold font-['playfair'] text-gray-800 mb-4">
             Get In Touch
           </h2>
-          <p className="text-base md:text-xl text-gray-600 max-w-2xl mx-auto font-['poppins']">
+          <p className="text-base md:text-xl text-gray-600 max-w-2xl mx-auto font-['playfair']">
             Ready to start your journey? We're here to support you every step of the way.
           </p>
         </div>
@@ -117,7 +117,7 @@ const ContactSection = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Full Name */}
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="playfair block text-sm font-medium text-gray-700 mb-2">
                   Full Name
                 </label>
                 <input
@@ -127,14 +127,14 @@ const ContactSection = () => {
                   required
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#86e3ce] focus:outline-none transition"
+                  className="playfair w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#86e3ce] focus:outline-none transition"
                   placeholder="Your full name"
                 />
               </div>
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="playfair block text-sm font-medium text-gray-700 mb-2">
                   Email Address
                 </label>
                 <input
@@ -144,14 +144,14 @@ const ContactSection = () => {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#86e3ce] focus:outline-none transition"
+                  className="w-full px-4 py-3 border playfair border-gray-300 rounded-lg focus:ring-2 focus:ring-[#86e3ce] focus:outline-none transition"
                   placeholder="your.email@example.com"
                 />
               </div>
 
               {/* Message */}
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="block playfair text-sm font-medium text-gray-700 mb-2">
                   Message
                 </label>
                 <textarea
@@ -161,7 +161,7 @@ const ContactSection = () => {
                   required
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#86e3ce] focus:outline-none transition"
+                  className="w-full px-4 py-3 border playfair border-gray-300 rounded-lg focus:ring-2 focus:ring-[#86e3ce] focus:outline-none transition"
                   placeholder="Tell us how we can help you..."
                 />
               </div>
@@ -170,7 +170,7 @@ const ContactSection = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-[#86e3ce] to-[#ccabdb] hover:from-[#86e3ce]/90 hover:to-[#ccabdb]/90 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50"
+                className="w-full playfair bg-gradient-to-r from-[#86e3ce] to-[#ccabdb] hover:from-[#86e3ce]/90 hover:to-[#ccabdb]/90 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50"
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center">

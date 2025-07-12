@@ -135,22 +135,19 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
                                     Personal Counselling
                                 </SelectItem>
                                 <SelectItem value="couple-therapy" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
-                                    Couple Therapy
+                                    Carrer Counselling
                                 </SelectItem>
                                 <SelectItem value="family-therapy" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
-                                    Family Therapy
+                                    Abroad Counselling
                                 </SelectItem>
                                 <SelectItem value="group-therapy" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
-                                    Group Therapy
+                                    Workshop Panels
                                 </SelectItem>
                                 <SelectItem value="career-counselling" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
-                                    Career Counselling
+                                    Internship Programs
                                 </SelectItem>
                                 <SelectItem value="stress-management" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
-                                    Stress Management
-                                </SelectItem>
-                                <SelectItem value="anxiety-depression" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
-                                    Anxiety & Depression
+                                    Personality and EQ Assessment
                                 </SelectItem>
                             </SelectContent>
                         </Select>

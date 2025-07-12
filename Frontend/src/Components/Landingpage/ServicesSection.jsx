@@ -70,7 +70,7 @@ const ServicesSection = () => {
           <h2 className="text-4xl sm:text-5xl font-bold font-['playfair'] text-gray-800 mb-6">
             Our Services
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto font-['poppins']">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto playfair">
             Comprehensive solutions designed to empower your personal and professional journey
           </p>
         </div>
@@ -97,7 +97,7 @@ const ServicesSection = () => {
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 mb-6 flex-grow font-['poppins'] leading-relaxed">
+                <p className="text-gray-600 mb-6 flex-grow font-['playfair'] leading-relaxed">
                   {service.description}
                 </p>
 

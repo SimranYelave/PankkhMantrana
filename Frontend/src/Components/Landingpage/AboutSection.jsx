@@ -40,7 +40,7 @@ const AboutSection = () => {
               About PankkhMantrana
             </h2>
 
-            <div className="space-y-6 font-['poppins'] text-gray-600 leading-relaxed">
+            <div className="space-y-6 font-['playfair'] text-gray-600 leading-relaxed">
               <p className="text-base sm:text-lg">
                 At PankkhMantrana, we believe that every individual has the potential to achieve greatness. 
                 Our mission is to provide comprehensive support services that empower minds and enrich life paths.

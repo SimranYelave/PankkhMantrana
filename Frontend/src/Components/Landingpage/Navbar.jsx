@@ -22,7 +22,7 @@ const Navbar = ({ onBookSession }) => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50 poppins">
+    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -39,7 +39,7 @@ const Navbar = ({ onBookSession }) => {
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className="hover:text-[#ccabdb] transition-colors duration-300 relative group text-[15px] font-medium"
+                  className="hover:text-[#ccabdb] transition-colors duration-300 relative group text-[15px] "
                 >
                   {label}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#ccabdb] transition-all duration-300 group-hover:w-full"></span>

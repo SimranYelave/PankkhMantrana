@@ -44,11 +44,11 @@ const CareerCounselling = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-50 font-poppins">
+        <div className="min-h-screen bg-gray-50">
             <section className="relative bg-gradient-to-r from-[#FFDD94] to-[#FA897B] py-20 overflow-hidden">
                 <div className="absolute inset-0 bg-black/10"></div>
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-5xl sm:text-6xl font-bold font-playfair text-white mb-6 animate-fade-up">
+                    <h1 className="text-5xl sm:text-6xl font-bold font-['playfair'] text-white mb-6 animate-fade-up">
                         Shape Your Professional Future
                     </h1>
                     <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: '0.2s' }}>
@@ -69,7 +69,7 @@ const CareerCounselling = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div className="animate-fade-up">
-                            <h2 className="text-4xl font-bold font-playfair text-gray-800 mb-6">
+                            <h2 className="text-4xl font-bold font-['playfair'] text-gray-800 mb-6">
                                 Professional Career Guidance
                             </h2>
                             <p className="text-lg text-gray-600 mb-6">
@@ -109,7 +109,7 @@ const CareerCounselling = () => {
             <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold font-playfair text-gray-800 mb-6">
+                        <h2 className="text-4xl font-bold font-['playfair'] text-gray-800 mb-6">
                             Career Counselling Benefits
                         </h2>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -139,7 +139,7 @@ const CareerCounselling = () => {
             <section className="py-20 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold font-playfair text-gray-800 mb-6">
+                        <h2 className="text-4xl font-bold font-['playfair'] text-gray-800 mb-6">
                             Our Career Counselling Process
                         </h2>
                     </div>
@@ -163,7 +163,7 @@ const CareerCounselling = () => {
 
             <section className="py-20 bg-gradient-to-r from-[#FA897B] to-[#FFDD94]">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <blockquote className="text-3xl sm:text-4xl font-playfair italic text-white mb-6">
+                    <blockquote className="text-3xl sm:text-4xl font-['playfair'] italic text-white mb-6">
                         "The future belongs to those who believe in the beauty of their dreams and work strategically to achieve them."
                     </blockquote>
                     <p className="text-white/80 text-lg">- Career Success Philosophy</p>
