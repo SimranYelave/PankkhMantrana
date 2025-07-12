@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { Heart, Facebook, Twitter, Instagram, Linkedin, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const scrollToSection = useCallback((id) => {
@@ -67,8 +68,8 @@ const Footer = () => {
               Our Services
             </h4>
             <ul className="space-y-2 font-['poppins'] text-sm">
-              <li className="text-gray-400">Personal Counselling</li>
-              <li className="text-gray-400">Career Counselling</li>
+              <li className="text-gray-400"> <Link to="/personalcounselling" >Personal Counselling</Link></li>
+              <li className="text-gray-400"><Link to="/careercounselling">Career Counselling</Link></li>
               <li className="text-gray-400">Abroad Counselling</li>
               <li className="text-gray-400">Yoga Training</li>
               <li className="text-gray-400">Internship Programs</li>

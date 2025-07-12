@@ -5,12 +5,14 @@ import AboutSection from '../Components/Landingpage/AboutSection'
 import FAQSection from '../Components/Landingpage/FAQSection'
 import ContactSection from '../Components/Landingpage/ContactSection'
 import Footer from '../Components/Landingpage/Footer'
+import ServicesSection from '../Components/Landingpage/ServicesSection'
 
 function LandingPage() {
   return (
     <div>
       <Navbar/>
       <HeroSection/>
+      <ServicesSection/>
       <AboutSection/>
       <FAQSection/>
       <ContactSection/>

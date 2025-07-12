@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '../UI/Button'; // Ensure this path is correct
-
 const Navbar = ({ onBookSession }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,12 +22,12 @@ const Navbar = ({ onBookSession }) => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50 font-['poppins']">
+    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50 poppins">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold font-playfair text-gray-800">
+            <h1 className="text-2xl font-semibold playfair text-gray-800">
               PankkhMantrana
             </h1>
           </div>

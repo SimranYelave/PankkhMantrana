@@ -40,14 +40,14 @@ const AboutSection = () => {
               About PankkhMantrana
             </h2>
 
-            <div className="space-y-6 font-poppins text-gray-600 leading-relaxed">
+            <div className="space-y-6 font-['poppins'] text-gray-600 leading-relaxed">
               <p className="text-base sm:text-lg">
                 At PankkhMantrana, we believe that every individual has the potential to achieve greatness. 
                 Our mission is to provide comprehensive support services that empower minds and enrich life paths.
               </p>
 
-              <div className="bg-pale-green/20 p-5 sm:p-6 rounded-xl">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 font-playfair">Our Mission</h3>
+              <div className="bg-[#d0e6a5]/20 p-5 sm:p-6 rounded-xl">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 font-['playfair']">Our Mission</h3>
                 <p className="text-sm sm:text-base">
                   To create a supportive environment where individuals can explore their potential, 
                   overcome challenges, and achieve personal and professional fulfillment through 
@@ -55,8 +55,8 @@ const AboutSection = () => {
                 </p>
               </div>
 
-              <div className="bg-lavender/20 p-5 sm:p-6 rounded-xl">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 font-playfair">Our Vision</h3>
+              <div className="bg-[#ccabdb]/20 p-5 sm:p-6 rounded-xl">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 font-['playfair']">Our Vision</h3>
                 <p className="text-sm sm:text-base">
                   To be the leading platform for holistic personal development, making quality 
                   counselling, career guidance, and wellness services accessible to everyone, 
@@ -68,7 +68,7 @@ const AboutSection = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 mt-8">
               <div className="text-center">
-                <i className="text-2xl sm:text-3xl font-bold text-[#98FF98] font-['playfair'] ">500+</i>
+                <i className="text-2xl sm:text-3xl font-bold text-[#98FF98] font-['playfair']">500+</i>
                 <div className="text-xs sm:text-sm text-gray-600">Happy Clients</div>
               </div>
               <div className="text-center">
