@@ -53,7 +53,7 @@ const services = [
   },
   {
     icon: <Brain className="w-12 h-12" />,
-    title: 'Personality Assessment',
+    title: 'Personality and EQ Assessment',
     description:
       'Comprehensive personality tests to help you understand your strengths and areas for growth.',
     color:'bg-[#86e3ce]',
@@ -67,7 +67,7 @@ const ServicesSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-up">
-          <h2 className="text-4xl sm:text-5xl font-bold font-['playfair'] text-gray-800 mb-6">
+          <h2 className="text-4xl sm:text-5xl font-bold playfair text-gray-800 mb-6">
             Our Services
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto playfair">
@@ -92,12 +92,12 @@ const ServicesSection = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold font-['playfair'] text-gray-800 mb-4">
+                <h3 className="text-2xl font-bold playfair text-gray-800 mb-4">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 mb-6 flex-grow font-['playfair'] leading-relaxed">
+                <p className="text-gray-600 mb-6 flex-grow playfair leading-relaxed">
                   {service.description}
                 </p>
 

@@ -30,7 +30,7 @@ const WorkshopPanels = () => {
       duration: "4-8 weeks",
       sessions: "2-4 sessions/week",
       price: "₹3,000 - ₹8,000",
-      color: "pale-green",
+      color: "bg-[#D0E6A5]",
       features: ["Hatha & Vinyasa Yoga", "Meditation & Pranayama", "Flexibility & Strength", "Stress Management"]
     },
     {
@@ -41,7 +41,7 @@ const WorkshopPanels = () => {
       duration: "6-10 weeks",
       sessions: "2-3 sessions/week",
       price: "₹4,000 - ₹12,000",
-      color: "peach",
+      color: "bg-[#FA897B]",
       features: ["Wheel Throwing", "Hand Building", "Glazing Techniques", "Kiln Operations"]
     },
     {
@@ -52,7 +52,7 @@ const WorkshopPanels = () => {
       duration: "4-12 weeks",
       sessions: "2-3 sessions/week",
       price: "₹3,500 - ₹10,000",
-      color: "lavender",
+      color: "bg-[#CCABDB]",
       features: ["Watercolor & Acrylic", "Sketching & Drawing", "Mixed Media Art", "Creative Composition"]
     }
   ];
@@ -65,19 +65,17 @@ const WorkshopPanels = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-poppins">
       {/* Header */}
-      <div className="bg-white shadow-sm sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link to="/" className="inline-flex items-center text-gray-600 hover:text-gray-800 transition-colors">
-            <ArrowLeft className="w-5 h-5 mr-2" />
-            Back to Home
-          </Link>
-        </div>
-      </div>
+      
 
-      {/* Banner */}
-      <section className="relative bg-gradient-to-r from-pale-green via-peach to-lavender py-20">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Banner with <img> */}
+      <section className="relative py-40 overflow-hidden">
+        <img
+          src="https://i.pinimg.com/736x/d5/90/f7/d590f759c4288b553a28dcefedd92bff.jpg"
+          alt="Workshop Background"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl sm:text-6xl font-bold font-playfair text-white mb-6 animate-fade-up">
             Creative Workshop Panels
           </h1>
@@ -107,7 +105,7 @@ const WorkshopPanels = () => {
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <CardContent className="p-8 text-center flex flex-col h-full">
-                  <div className={`w-20 h-20 bg-${workshop.color} rounded-full flex items-center justify-center mx-auto mb-6 text-white`}>
+                  <div className={`w-20 h-20 ${workshop.color} rounded-full flex items-center justify-center mx-auto mb-6 text-white`}>
                     {workshop.icon}
                   </div>
                   <h3 className="text-2xl font-bold text-gray-800 mb-4">{workshop.name}</h3>
@@ -133,7 +131,7 @@ const WorkshopPanels = () => {
                     <ul className="text-sm text-gray-600 space-y-1">
                       {workshop.features.map((feature, idx) => (
                         <li key={idx} className="flex items-center">
-                          <span className={`w-2 h-2 bg-${workshop.color} rounded-full mr-2`}></span>
+                          <span className="w-2 h-2 bg-gray-500 rounded-full mr-2"></span>
                           {feature}
                         </li>
                       ))}
@@ -142,7 +140,7 @@ const WorkshopPanels = () => {
 
                   <Button
                     onClick={() => handleEnroll(workshop.id)}
-                    className={`w-full bg-${workshop.color} hover:bg-${workshop.color}/90 text-white`}
+                    className={`w-full ${workshop.color} hover:opacity-90 text-white`}
                   >
                     Enroll Now
                   </Button>
@@ -170,22 +168,22 @@ const WorkshopPanels = () => {
               <div className="bg-gray-50 p-8 rounded-2xl">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
-                    <Users className="w-8 h-8 text-pale-green mx-auto mb-2" />
+                    <Users className="w-8 h-8 text-[#D0E6A5] mx-auto mb-2" />
                     <h3 className="font-bold text-gray-800">Expert Instructors</h3>
                     <p className="text-sm text-gray-600">Certified professionals</p>
                   </div>
                   <div className="text-center">
-                    <Calendar className="w-8 h-8 text-peach mx-auto mb-2" />
+                    <Calendar className="w-8 h-8 text-[#FA897B] mx-auto mb-2" />
                     <h3 className="font-bold text-gray-800">Flexible Schedule</h3>
                     <p className="text-sm text-gray-600">Multiple time slots</p>
                   </div>
                   <div className="text-center">
-                    <Clock className="w-8 h-8 text-lavender mx-auto mb-2" />
+                    <Clock className="w-8 h-8 text-[#CCABDB] mx-auto mb-2" />
                     <h3 className="font-bold text-gray-800">Small Groups</h3>
                     <p className="text-sm text-gray-600">Personalized attention</p>
                   </div>
                   <div className="text-center">
-                    <Hammer className="w-8 h-8 text-mint-green mx-auto mb-2" />
+                    <Hammer className="w-8 h-8 text-[#86E3CE] mx-auto mb-2" />
                     <h3 className="font-bold text-gray-800">Quality Materials</h3>
                     <p className="text-sm text-gray-600">Professional supplies</p>
                   </div>
@@ -201,7 +199,7 @@ const WorkshopPanels = () => {
         <Button
           onClick={() => setIsBookModalOpen(true)}
           size="lg"
-          className="bg-gradient-to-r from-pale-green to-lavender hover:from-pale-green/90 hover:to-lavender/90 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          className="bg-gradient-to-r from-[#D0E6A5] to-[#CCABDB] hover:from-[#D0E6A5]/90 hover:to-[#CCABDB]/90 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
         >
           <TreePine className="w-5 h-5 mr-2" />
           Enroll in Workshop
@@ -209,46 +207,45 @@ const WorkshopPanels = () => {
       </div>
 
       {/* Enrollment Modal */}
-      <Dialog open={isBookModalOpen} onOpenChange={setIsBookModalOpen}>
-        <DialogContent className="sm:max-w-md">
+      <Dialog open={isBookModalOpen} onOpenChange={setIsBookModalOpen} className="bg-white">
+        <DialogContent className="sm:max-w-md bg-white max-h-[90vh] overflow-y-auto ">
           <DialogHeader>
             <DialogTitle>Enroll in Workshop Panel</DialogTitle>
           </DialogHeader>
           <form className="space-y-4">
             <div>
               <Label htmlFor="name">Full Name</Label>
-              <Input id="name" placeholder="Enter your full name" />
+              <Input id="name" placeholder="Enter your full name" className="border border-gray-300"/>
             </div>
             <div>
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="Enter your email" />
+              <Input id="email" type="email" placeholder="Enter your email" className="border border-gray-300"/>
             </div>
             <div>
               <Label htmlFor="phone">Phone Number</Label>
-              <Input id="phone" placeholder="Enter your phone number" />
+              <Input id="phone" placeholder="Enter your phone number" className="border border-gray-300"/>
             </div>
             <div>
               <Label htmlFor="workshop">Select Workshop</Label>
-              <Select value={selectedWorkshop} onValueChange={setSelectedWorkshop}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Choose a workshop" />
+              <Select value={selectedWorkshop} onValueChange={setSelectedWorkshop} className="border border-gray-300">
+                <SelectTrigger className="border border-gray-300 bg-white">
+                  <SelectValue placeholder="Choose a workshop" className="border border-gray-300 bg-white"/>
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="yoga">Yoga Workshop</SelectItem>
-                  <SelectItem value="pottery">Pottery Workshop</SelectItem>
-                  <SelectItem value="arts">Arts Workshop</SelectItem>
+                <SelectContent className="border border-gray-300 bg-white">
+                  <SelectItem value="yoga" >Yoga Workshop</SelectItem>
+                  <SelectItem value="pottery" >Pottery Workshop</SelectItem>
+                  <SelectItem value="arts" >Arts Workshop</SelectItem>
                 </SelectContent>
               </Select>
-            </div>
-            <div>
+            </div>     <div>
               <Label htmlFor="experience">Previous Experience</Label>
-              <Input id="experience" placeholder="e.g., Beginner, Some experience" />
+              <Input id="experience" placeholder="e.g., Beginner, Some experience" className="border border-gray-300"/>
             </div>
             <div>
               <Label htmlFor="goals">Your Goals</Label>
-              <Textarea id="goals" placeholder="What do you hope to achieve from this workshop?" />
+              <Textarea id="goals" placeholder="What do you hope to achieve from this workshop?" className="border border-gray-300"/>
             </div>
-            <Button type="submit" className="w-full bg-gradient-to-r from-pale-green to-lavender hover:from-pale-green/90 hover:to-lavender/90">
+            <Button type="submit" className="w-full bg-gradient-to-r from-[#D0E6A5] to-[#CCABDB] hover:from-[#D0E6A5]/90 hover:to-[#CCABDB]/90">
               Submit Enrollment
             </Button>
           </form>

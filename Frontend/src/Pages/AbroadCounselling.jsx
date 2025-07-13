@@ -8,6 +8,7 @@ import { useToast } from "../hooks/use-toast";
 const AbroadCounselling = () => {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
     const { toast } = useToast();
+
     const benefits = [
         {
             icon: <Globe className="w-6 h-6 sm:w-8 sm:h-8" />,
@@ -31,7 +32,6 @@ const AbroadCounselling = () => {
         }
     ];
 
-
     const handleBookingSubmit = (formData) => {
         toast({
             title: "Session Booked Successfully!",
@@ -41,10 +41,15 @@ const AbroadCounselling = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 ">
-            {/* Banner Section */}
-            <section className="relative bg-gradient-to-r from-[#CCABDB] to-[#86E3CE] py-12 sm:py-16 md:py-20 overflow-hidden">
-                <div className="absolute inset-0 bg-black/10"></div>
+        <div className="min-h-screen bg-gray-50">
+            {/* Banner Section with Image */}
+            <section className="relative py-32 overflow-hidden text-center">
+                <img
+                    src="https://images.unsplash.com/photo-1657358846130-3305fd8fcd30?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dHJhdmVsJTIwcGFzc3BvcnR8ZW58MHx8MHx8fDA%3D"
+                    alt="Abroad Counselling Banner"
+                    className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/40"></div>
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-['playfair'] text-white mb-4 sm:mb-6 animate-fade-up">
                         Your Gateway to Global Opportunities
@@ -139,7 +144,7 @@ const AbroadCounselling = () => {
                 </div>
             </section>
 
-            {/* Process Steps */}
+            {/* Journey Steps */}
             <section className="py-12 sm:py-16 md:py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12 sm:mb-16">
@@ -168,7 +173,7 @@ const AbroadCounselling = () => {
             </section>
 
             {/* Quote Section */}
-            <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-[#86E3CE] to-[#CCABDB] ">
+            <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-[#86E3CE] to-[#CCABDB]">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <blockquote className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-['playfair'] italic text-white mb-4 sm:mb-6 leading-relaxed">
                         "The world is a book, and those who do not travel read only one page."

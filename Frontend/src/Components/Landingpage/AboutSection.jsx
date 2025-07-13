@@ -25,7 +25,7 @@ const AboutSection = () => {
           <div className={`transition-all duration-1000 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
             <div className="relative w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
               <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+                src="https://miro.medium.com/v2/resize:fit:2000/1*cPhyk8poIi5hUail5j-mDg.jpeg"
                 alt="Professional counselling session"
                 className="rounded-2xl shadow-2xl w-full h-full object-cover"
               />
@@ -36,18 +36,18 @@ const AboutSection = () => {
 
           {/* Right - Content */}
           <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'animate-slide-in-right' : 'opacity-0 translate-x-8'}`}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-['playfair'] text-gray-800 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold playfair text-gray-800 mb-6">
               About PankkhMantrana
             </h2>
 
-            <div className="space-y-6 font-['playfair'] text-gray-600 leading-relaxed">
+            <div className="space-y-6 playfair text-gray-600 leading-relaxed">
               <p className="text-base sm:text-lg">
                 At PankkhMantrana, we believe that every individual has the potential to achieve greatness. 
                 Our mission is to provide comprehensive support services that empower minds and enrich life paths.
               </p>
 
               <div className="bg-[#d0e6a5]/20 p-5 sm:p-6 rounded-xl">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 font-['playfair']">Our Mission</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 playfair">Our Mission</h3>
                 <p className="text-sm sm:text-base">
                   To create a supportive environment where individuals can explore their potential, 
                   overcome challenges, and achieve personal and professional fulfillment through 
@@ -56,7 +56,7 @@ const AboutSection = () => {
               </div>
 
               <div className="bg-[#ccabdb]/20 p-5 sm:p-6 rounded-xl">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 font-['playfair']">Our Vision</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 playfair">Our Vision</h3>
                 <p className="text-sm sm:text-base">
                   To be the leading platform for holistic personal development, making quality 
                   counselling, career guidance, and wellness services accessible to everyone, 
@@ -68,15 +68,15 @@ const AboutSection = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 mt-8">
               <div className="text-center">
-                <i className="text-2xl sm:text-3xl font-bold text-[#98FF98] font-['playfair']">500+</i>
+                <i className="text-2xl sm:text-3xl font-bold text-[#98FF98] playfair">500+</i>
                 <div className="text-xs sm:text-sm text-gray-600">Happy Clients</div>
               </div>
               <div className="text-center">
-                <i className="text-2xl sm:text-3xl font-bold text-[#ffb997] font-['playfair']">5+</i>
+                <i className="text-2xl sm:text-3xl font-bold text-[#ffb997] playfair">5+</i>
                 <div className="text-xs sm:text-sm text-gray-600">Years Experience</div>
               </div>
               <div className="text-center">
-                <i className="text-2xl sm:text-3xl font-bold text-[#E6E6FA] font-['playfair']">6</i>
+                <i className="text-2xl sm:text-3xl font-bold text-[#E6E6FA] playfair">6</i>
                 <div className="text-xs sm:text-sm text-gray-600">Services</div>
               </div>
             </div>

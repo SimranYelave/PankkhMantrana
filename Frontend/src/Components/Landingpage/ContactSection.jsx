@@ -35,10 +35,10 @@ const ContactSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold font-['playfair'] text-gray-800 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold playfair text-gray-800 mb-4">
             Get In Touch
           </h2>
-          <p className="text-base md:text-xl text-gray-600 max-w-2xl mx-auto font-['playfair']">
+          <p className="text-base md:text-xl text-gray-600 max-w-2xl mx-auto playfair">
             Ready to start your journey? We're here to support you every step of the way.
           </p>
         </div>
@@ -47,7 +47,7 @@ const ContactSection = () => {
           {/* Contact Information */}
           <div className="space-y-10">
             <div>
-              <h3 className="text-2xl font-bold font-['playfair'] text-gray-800 mb-6">
+              <h3 className="text-2xl font-bold playfair text-gray-800 mb-6">
                 Contact Information
               </h3>
               <div className="space-y-6">
@@ -88,10 +88,10 @@ const ContactSection = () => {
 
             {/* Office Hours */}
             <div className="bg-white p-6 rounded-2xl shadow-lg">
-              <h4 className="text-xl font-bold font-['playfair'] text-gray-800 mb-4">
+              <h4 className="text-xl font-bold playfair text-gray-800 mb-4">
                 Office Hours
               </h4>
-              <div className="space-y-2 font-['playfair'] text-gray-600 text-sm">
+              <div className="space-y-2 playfair text-gray-600 text-sm">
                 <div className="flex justify-between">
                   <span>Monday - Friday</span>
                   <span>9:00 AM - 7:00 PM</span>
@@ -110,7 +110,7 @@ const ContactSection = () => {
 
           {/* Contact Form */}
           <div className="bg-white p-8 rounded-2xl shadow-2xl">
-            <h3 className="text-2xl font-bold font-['playfair'] text-gray-800 mb-6">
+            <h3 className="text-2xl font-bold playfair text-gray-800 mb-6">
               Send us a Message
             </h3>
 
