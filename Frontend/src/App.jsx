@@ -5,6 +5,7 @@ import CareerCounselling from "./Pages/CareerCounselling";
 import AbroadCounselling from "./Pages/AbroadCounselling";
 import WorkshopPanels from "./Pages/WorkshopPanels";
 import './App.css';
+import PersonalityAssessment from "./Pages/PersonalAssessment";
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
           <Route path="/abroadcounselling" element={<AbroadCounselling />} />
           <Route path="/careercounselling" element={<CareerCounselling />} />;
           <Route path="/workshoppanels" element={<WorkshopPanels />} />;
+          <Route path="/personalassessment" element={<PersonalityAssessment />} />
         </Routes>
       </Router>
     </>
