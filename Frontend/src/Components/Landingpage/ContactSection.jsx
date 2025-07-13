@@ -24,10 +24,22 @@ const ContactSection = () => {
     // Simulate submission delay
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    alert("Message sent successfully! We'll get back to you soon.");
+    const { name, email, message } = formData;
 
+    const whatsappMessage = `Hello! I have a message for you.\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
+
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+
+    // Construct WhatsApp URL
+    const whatsappUrl = `https://wa.me/919372563912?text=${encodedMessage}`;
+
+    // Reset form
     setFormData({ name: '', email: '', message: '' });
     setIsSubmitting(false);
+
+    // Redirect to WhatsApp
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -94,11 +106,11 @@ const ContactSection = () => {
               <div className="space-y-2 playfair text-gray-600 text-sm">
                 <div className="flex justify-between">
                   <span>Monday - Friday</span>
-                  <span>9:00 AM - 7:00 PM</span>
+                  <span>11:00 AM - 8:00 PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Saturday</span>
-                  <span>10:00 AM - 4:00 PM</span>
+                  <span>11:00 AM - 5:00 PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Sunday</span>

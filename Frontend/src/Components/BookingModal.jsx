@@ -17,14 +17,78 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
         message: ''
     });
 
+    const [errors, setErrors] = useState({});
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+
+        // Clear error when user starts typing
+        if (errors[name]) {
+            setErrors(prev => ({ ...prev, [name]: '' }));
+        }
+    };
+
+    const validateForm = () => {
+        const newErrors = {};
+
+        // Required field validations
+        if (!formData.name.trim()) {
+            newErrors.name = 'Full name is required';
+        }
+
+        if (!formData.email.trim()) {
+            newErrors.email = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            newErrors.email = 'Please enter a valid email address';
+        }
+
+        if (!formData.service) {
+            newErrors.service = 'Please select a service';
+        }
+
+        if (!formData.preferredDate) {
+            newErrors.preferredDate = 'Preferred date is required';
+        } else {
+            const selectedDate = new Date(formData.preferredDate);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (selectedDate < today) {
+                newErrors.preferredDate = 'Please select a future date';
+            }
+        }
+
+        if (!formData.preferredTime) {
+            newErrors.preferredTime = 'Preferred time is required';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Validate form before submitting
+        if (!validateForm()) {
+            return;
+        }
+
+        const { name, email, phone, location, service, preferredDate, preferredTime, message } = formData;
+
+        const whatsappMessage = `Hello! I would like to book a session.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nLocation: ${location}\nService: ${service}\nPreferred Date: ${preferredDate}\nPreferred Time: ${preferredTime}\nAdditional Info: ${message}`;
+
+        // Encode the message for URL
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+
+        // Construct WhatsApp URL
+        const whatsappUrl = `https://wa.me/919372563912?text=${encodedMessage}`;
+
+        // Call the onSubmit callback
         onSubmit(formData);
+
+        // Reset form
         setFormData({
             name: '',
             email: '',
@@ -35,6 +99,12 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
             preferredTime: '',
             message: ''
         });
+
+        // Clear errors
+        setErrors({});
+
+        // Redirect to WhatsApp
+        window.open(whatsappUrl, '_blank');
     };
 
     if (!isOpen) return null;
@@ -43,7 +113,7 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl max-h-[90vh] overflow-y-auto">
                 {/* Header with gradient background */}
-                <div className="bg-gradient-to-r from-emerald-400 via-teal-400 to-purple-400 p-6 rounded-t-2xl relative">
+                <div className="bg-gradient-to-r from-[#86E3CE] to-[#CCABDB] p-6 rounded-t-2xl relative">
                     <button
                         onClick={onClose}
                         className="absolute top-4 right-4 text-white hover:text-gray-200 text-2xl font-light w-8 h-8 flex items-center justify-center"
@@ -72,7 +142,9 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
                                 onChange={handleInputChange}
                                 required
                                 placeholder="Your full name"
+                                className={errors.name ? 'border-red-500' : ' border border-gray-300'}
                             />
+                            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                         </div>
 
                         <div>
@@ -87,7 +159,9 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
                                 onChange={handleInputChange}
                                 required
                                 placeholder="your.email@example.com"
+                                className={errors.email ? 'border-red-500' : ' border border-gray-300'}
                             />
+                            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                         </div>
                     </div>
 
@@ -104,6 +178,7 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
                                 value={formData.phone}
                                 onChange={handleInputChange}
                                 placeholder="+91 98765 43210"
+                                className=" border border-gray-300"
                             />
                         </div>
 
@@ -117,6 +192,7 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
                                 value={formData.location}
                                 onChange={handleInputChange}
                                 placeholder="Your city"
+                                className=" border border-gray-300"
                             />
                         </div>
                     </div>
@@ -126,31 +202,37 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                             Service Selection *
                         </label>
-                        <Select onValueChange={(value) => setFormData(prev => ({ ...prev, service: value }))}>
-                            <SelectTrigger className="w-full">
+                        <Select onValueChange={(value) => {
+                            setFormData(prev => ({ ...prev, service: value }));
+                            if (errors.service) {
+                                setErrors(prev => ({ ...prev, service: '' }));
+                            }
+                        }}>
+                            <SelectTrigger className={`w-full ${errors.service ? 'border-red-500' : ' border border-gray-300'}`}>
                                 <SelectValue placeholder="Choose a service" />
                             </SelectTrigger>
                             <SelectContent className="bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
                                 <SelectItem value="personal-counselling" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
                                     Personal Counselling
                                 </SelectItem>
-                                <SelectItem value="couple-therapy" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
-                                    Carrer Counselling
+                                <SelectItem value="career-counselling" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
+                                    Career Counselling
                                 </SelectItem>
-                                <SelectItem value="family-therapy" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
+                                <SelectItem value="abroad-counselling" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
                                     Abroad Counselling
                                 </SelectItem>
-                                <SelectItem value="group-therapy" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
+                                <SelectItem value="workshop-panels" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
                                     Workshop Panels
                                 </SelectItem>
-                                <SelectItem value="career-counselling" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
+                                <SelectItem value="internship-programs" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
                                     Internship Programs
                                 </SelectItem>
-                                <SelectItem value="stress-management" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
+                                <SelectItem value="personality-assessment" className="hover:bg-gray-50 px-4 py-2 cursor-pointer border-none">
                                     Personality and EQ Assessment
                                 </SelectItem>
                             </SelectContent>
                         </Select>
+                        {errors.service && <p className="text-red-500 text-sm mt-1">{errors.service}</p>}
                     </div>
 
                     {/* Date and Time Row */}
@@ -168,7 +250,9 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
                                 required
                                 min={new Date().toISOString().split('T')[0]}
                                 placeholder="dd-mm-yyyy"
+                                className={errors.preferredDate ? 'border-red-500' : ' border border-gray-300'}
                             />
+                            {errors.preferredDate && <p className="text-red-500 text-sm mt-1">{errors.preferredDate}</p>}
                         </div>
 
                         <div>
@@ -183,7 +267,9 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
                                 onChange={handleInputChange}
                                 required
                                 placeholder="--:--"
+                                className={errors.preferredTime ? 'border-red-500' : ' border border-gray-300'}
                             />
+                            {errors.preferredTime && <p className="text-red-500 text-sm mt-1">{errors.preferredTime}</p>}
                         </div>
                     </div>
 
@@ -198,6 +284,7 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
                             onChange={handleInputChange}
                             rows={4}
                             placeholder="Tell us more about what you'd like to achieve..."
+                            className=" border border-gray-300"
                         />
                     </div>
 
@@ -206,7 +293,7 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
                         <Button
                             type="button"
                             onClick={handleSubmit}
-                            className="w-full py-4 text-lg font-semibold bg-gradient-to-r from-pink-400 via-purple-400 to-purple-500 hover:from-pink-500 hover:via-purple-500 hover:to-purple-600"
+                            className="w-full py-4 text-lg text-white font-semibold bg-gradient-to-r from-[#FA8978] to-[#CCABDB] hover:from-pink-500 hover:via-purple-500 hover:to-purple-600"
                         >
                             Book My Session
                         </Button>

@@ -1,7 +1,6 @@
-import React from "react";
-import { Button } from "../UI/Button"; // Ensure this path is correct
+import { Button } from "../UI/Button";
 
-const  HeroSection = () => {
+const HeroSection = () => {
   const scrollToServices = () => {
     const element = document.getElementById("services");
     if (element) {
@@ -50,19 +49,13 @@ const  HeroSection = () => {
           </h1>
 
           {/* Subheading */}
-          <p className="text-lg sm:text-xl md:text-2xl text-white/95 mb-8 max-w-3xl mx-auto poppins font-bold drop-shadow-lg">
-            Professional counselling, career guidance, yoga training, and
-            personality assessment services to help you discover your true
-            potential and create the life you deserve.
+          <p className="text-lg sm:text-xl md:text-2xl text-white/95 mb-8 max-w-3xl mx-auto font-['poppins'] font-light drop-shadow-lg">
+            PankkhMantrana is a counselling center started by Ms. Nidhi Borana, providing Services -
+            Professional counselling, Career guidance, Abroad counselling,
+            Workshop, Internship Programs, Relationship counselling, Personality & Emotional Quotient
+            Assessment, Career (Psychometric & Aptitiude Assessment)
           </p>
 
-          {/* CTA Button */}
-          <Button
-            onClick={scrollToServices}
-            className="bg-transparent border border-b-gray-700 text-gray-800 hover:bg-gray-100 font-bold text-lg px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
-          >
-            Get Started
-          </Button>
         </div>
       </div>
     </section>

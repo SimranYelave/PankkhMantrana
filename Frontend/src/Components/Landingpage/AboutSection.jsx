@@ -49,9 +49,9 @@ const AboutSection = () => {
               <div className="bg-[#d0e6a5]/20 p-5 sm:p-6 rounded-xl">
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 playfair">Our Mission</h3>
                 <p className="text-sm sm:text-base">
-                  To create a supportive environment where individuals can explore their potential, 
-                  overcome challenges, and achieve personal and professional fulfillment through 
-                  evidence-based practices and compassionate guidance.
+                  To reach out to as many people 
+                  Ex. College students, Married couples, genetic population facing Psychological
+                  issues or career confusion.
                 </p>
               </div>
 
