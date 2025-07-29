@@ -83,7 +83,7 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
         const encodedMessage = encodeURIComponent(whatsappMessage);
 
         // Construct WhatsApp URL
-        const whatsappUrl = `https://wa.me/919372563912?text=${encodedMessage}`;
+        const whatsappUrl = `https://wa.me/918779498158?text=${encodedMessage}`;
 
         // Call the onSubmit callback
         onSubmit(formData);
