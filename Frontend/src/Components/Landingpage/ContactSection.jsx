@@ -32,7 +32,7 @@ const ContactSection = () => {
     const encodedMessage = encodeURIComponent(whatsappMessage);
 
     // Construct WhatsApp URL
-    const whatsappUrl = `https://wa.me/919372563912?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/918779498158?text=${encodedMessage}`;
 
     // Reset form
     setFormData({ name: '', email: '', message: '' });
@@ -70,7 +70,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-800">Phone</p>
-                    <p className="text-gray-600">+91 98765 43210</p>
+                    <p className="text-gray-600">+91 87794 98158</p>
                   </div>
                 </div>
 
@@ -81,7 +81,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-800">Email</p>
-                    <p className="text-gray-600">hello@pankhmantrana.com</p>
+                    <p className="text-gray-600">pankkhmantrana@gmail.com</p>
                   </div>
                 </div>
 

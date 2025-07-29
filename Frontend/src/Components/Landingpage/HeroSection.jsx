@@ -43,9 +43,9 @@ const HeroSection = () => {
         <div className="animate-fade-up">
           {/* Heading */}
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-5xl font-extrabold playfair text-white mb-6 leading-tight drop-shadow-2xl">
-            Empower Your Mind.
+            Let's tap into our own wisdom
             <br />
-            <span className="text-[#ffdd94]">Enrich Your Path.</span>
+            {/* <span className="text-[#ffdd94]">Enrich Your Path.</span> */}
           </h1>
 
           {/* Subheading */}
