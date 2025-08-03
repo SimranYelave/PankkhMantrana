@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Card, CardContent } from '../Components/UI/Card';
 import { Button } from '../Components/UI/Button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../Components/UI/Dialog';
@@ -14,12 +13,24 @@ import {
   Hammer,
   Users,
   Calendar,
-  Clock
+  Clock,
+  User,
+  Mail,
+  Phone
 } from 'lucide-react';
 
 const WorkshopPanels = () => {
   const [isBookModalOpen, setIsBookModalOpen] = useState(false);
   const [selectedWorkshop, setSelectedWorkshop] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    workshop: '',
+    experience: '',
+    goals: ''
+  });
+  const [errors, setErrors] = useState({});
 
   const workshops = [
     {
@@ -27,9 +38,9 @@ const WorkshopPanels = () => {
       name: "Yoga Workshop",
       icon: <TreePine className="w-12 h-12" />,
       description: "Transform your life through traditional yoga practices, meditation, and breathing techniques.",
-      duration: "4-8 weeks",
-      sessions: "2-4 sessions/week",
-      price: "₹3,000 - ₹8,000",
+      // duration: "4-8 weeks",
+      // sessions: "2-4 sessions/week",
+      // price: "₹3,000 - ₹8,000",
       color: "bg-[#D0E6A5]",
       features: ["Hatha & Vinyasa Yoga", "Meditation & Pranayama", "Flexibility & Strength", "Stress Management"]
     },
@@ -38,9 +49,9 @@ const WorkshopPanels = () => {
       name: "Pottery Workshop",
       icon: <Hammer className="w-12 h-12" />,
       description: "Learn the ancient art of pottery making, from basic techniques to advanced ceramic creations.",
-      duration: "6-10 weeks",
-      sessions: "2-3 sessions/week",
-      price: "₹4,000 - ₹12,000",
+      // duration: "6-10 weeks",
+      // sessions: "2-3 sessions/week",
+      // price: "₹4,000 - ₹12,000",
       color: "bg-[#FA897B]",
       features: ["Wheel Throwing", "Hand Building", "Glazing Techniques", "Kiln Operations"]
     },
@@ -49,9 +60,9 @@ const WorkshopPanels = () => {
       name: "Arts Workshop",
       icon: <Palette className="w-12 h-12" />,
       description: "Explore various art forms including painting, sketching, mixed media, and creative expression.",
-      duration: "4-12 weeks",
-      sessions: "2-3 sessions/week",
-      price: "₹3,500 - ₹10,000",
+      // duration: "4-12 weeks",
+      // sessions: "2-3 sessions/week",
+      // price: "₹3,500 - ₹10,000",
       color: "bg-[#CCABDB]",
       features: ["Watercolor & Acrylic", "Sketching & Drawing", "Mixed Media Art", "Creative Composition"]
     }
@@ -59,14 +70,86 @@ const WorkshopPanels = () => {
 
   const handleEnroll = (workshopId) => {
     setSelectedWorkshop(workshopId);
+    setFormData(prev => ({ ...prev, workshop: workshopId }));
     setIsBookModalOpen(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Required field validations
+    if (!formData.name.trim()) {
+      newErrors.name = 'Full name is required';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    if (!formData.workshop) {
+      newErrors.workshop = 'Please select a workshop';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate form before submitting
+    if (!validateForm()) {
+      return;
+    }
+
+    const { name, email, phone, workshop, experience, goals } = formData;
+
+    // Get workshop display name
+    const workshopName = workshops.find(w => w.id === workshop)?.name || workshop;
+
+    const whatsappMessage = `Hello! I would like to enroll in a workshop.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nWorkshop: ${workshopName}\nPrevious Experience: ${experience}\nGoals: ${goals}`;
+
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+
+    // Construct WhatsApp URL
+    const whatsappUrl = `https://wa.me/918779498158?text=${encodedMessage}`;
+
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      workshop: '',
+      experience: '',
+      goals: ''
+    });
+
+    // Clear errors
+    setErrors({});
+
+    // Close modal
+    setIsBookModalOpen(false);
+    setSelectedWorkshop('');
+
+    // Redirect to WhatsApp
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
     <div className="min-h-screen bg-gray-50 font-poppins">
-      {/* Header */}
-      
-
       {/* Banner with <img> */}
       <section className="relative py-40 overflow-hidden">
         <img
@@ -111,6 +194,15 @@ const WorkshopPanels = () => {
                   <h3 className="text-2xl font-bold text-gray-800 mb-4">{workshop.name}</h3>
                   <p className="text-gray-600 mb-6">{workshop.description}</p>
 
+                  {/* Upcoming Soon Badge */}
+                  <div className="mb-6">
+                    <span className={`inline-block ${workshop.color} text-white px-4 py-2 rounded-full text-sm font-semibold`}>
+                      Coming Soon
+                    </span>
+                  </div>
+
+                  {/* Commented out duration, sessions, price */}
+                  {/*
                   <div className="space-y-3 mb-6 text-left">
                     <div className="flex justify-between">
                       <span className="font-semibold text-gray-700">Duration:</span>
@@ -125,6 +217,7 @@ const WorkshopPanels = () => {
                       <span className="text-gray-600">{workshop.price}</span>
                     </div>
                   </div>
+                  */}
 
                   <div className="mb-6">
                     <h4 className="font-semibold text-gray-700 mb-3">What You'll Learn:</h4>
@@ -142,7 +235,7 @@ const WorkshopPanels = () => {
                     onClick={() => handleEnroll(workshop.id)}
                     className={`w-full ${workshop.color} hover:opacity-90 text-white`}
                   >
-                    Enroll Now
+                    Register Interest
                   </Button>
                 </CardContent>
               </Card>
@@ -202,55 +295,171 @@ const WorkshopPanels = () => {
           className="bg-gradient-to-r from-[#D0E6A5] to-[#CCABDB] hover:from-[#D0E6A5]/90 hover:to-[#CCABDB]/90 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
         >
           <TreePine className="w-5 h-5 mr-2" />
-          Enroll in Workshop
+          Register Interest
         </Button>
       </div>
 
-      {/* Enrollment Modal */}
-      <Dialog open={isBookModalOpen} onOpenChange={setIsBookModalOpen} className="bg-white">
-        <DialogContent className="sm:max-w-md bg-white max-h-[90vh] overflow-y-auto ">
-          <DialogHeader>
-            <DialogTitle>Enroll in Workshop Panel</DialogTitle>
-          </DialogHeader>
-          <form className="space-y-4">
-            <div>
-              <Label htmlFor="name">Full Name</Label>
-              <Input id="name" placeholder="Enter your full name" className="border border-gray-300"/>
+      {/* Updated Enrollment Modal with WhatsApp functionality */}
+      {isBookModalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl max-h-[90vh] overflow-y-auto">
+            {/* Header with gradient background */}
+            <div className="bg-gradient-to-r from-[#D0E6A5] to-[#CCABDB] p-6 rounded-t-2xl relative">
+              <button
+                onClick={() => {
+                  setIsBookModalOpen(false);
+                  setSelectedWorkshop('');
+                  setFormData({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    workshop: '',
+                    experience: '',
+                    goals: ''
+                  });
+                  setErrors({});
+                }}
+                className="absolute top-4 right-4 text-white hover:text-gray-200 text-2xl font-light w-8 h-8 flex items-center justify-center"
+              >
+                ×
+              </button>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                Register Your Interest
+              </h3>
+              <p className="text-white/90 text-sm sm:text-base">
+                Be the first to know when our workshops launch
+              </p>
             </div>
-            <div>
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="Enter your email" className="border border-gray-300"/>
+
+            <div className="p-6 space-y-6">
+              <div className="space-y-6">
+                {/* Name and Email Row */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <User className="w-4 h-4 inline mr-2" />
+                      Full Name *
+                    </label>
+                    <Input
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="Your full name"
+                      className={errors.name ? 'border-red-500' : 'border border-gray-300'}
+                    />
+                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <Mail className="w-4 h-4 inline mr-2" />
+                      Email Address *
+                    </label>
+                    <Input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="your.email@example.com"
+                      className={errors.email ? 'border-red-500' : 'border border-gray-300'}
+                    />
+                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                  </div>
+                </div>
+
+                {/* Phone Number */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <Phone className="w-4 h-4 inline mr-2" />
+                    Phone Number
+                  </label>
+                  <Input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="+91 98765 43210"
+                    className="border border-gray-300"
+                  />
+                </div>
+
+                {/* Workshop Selection */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Select Workshop *
+                  </label>
+                  <Select
+                    value={formData.workshop}
+                    onValueChange={(value) => {
+                      setFormData(prev => ({ ...prev, workshop: value }));
+                      if (errors.workshop) {
+                        setErrors(prev => ({ ...prev, workshop: '' }));
+                      }
+                    }}
+                  >
+                    <SelectTrigger className={`w-full ${errors.workshop ? 'border-red-500' : 'border border-gray-300'} bg-white`}>
+                      <SelectValue placeholder="Choose a workshop" />
+                    </SelectTrigger>
+                    <SelectContent className="border border-gray-300 bg-white">
+                      <SelectItem value="yoga">Yoga Workshop</SelectItem>
+                      <SelectItem value="pottery">Pottery Workshop</SelectItem>
+                      <SelectItem value="arts">Arts Workshop</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {errors.workshop && <p className="text-red-500 text-sm mt-1">{errors.workshop}</p>}
+                </div>
+
+                {/* Previous Experience */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Previous Experience
+                  </label>
+                  <Input
+                    name="experience"
+                    value={formData.experience}
+                    onChange={handleInputChange}
+                    placeholder="e.g., Beginner, Some experience"
+                    className="border border-gray-300"
+                  />
+                </div>
+
+                {/* Goals */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Your Goals (Optional)
+                  </label>
+                  <Textarea
+                    name="goals"
+                    value={formData.goals}
+                    onChange={handleInputChange}
+                    rows={4}
+                    placeholder="What do you hope to achieve from this workshop?"
+                    className="border border-gray-300"
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <div className="pt-4">
+                  <Button
+                    type="button"
+                    onClick={handleSubmit}
+                    className="w-full py-4 text-lg text-white font-semibold bg-gradient-to-r from-[#D0E6A5] to-[#CCABDB] hover:from-[#D0E6A5]/90 hover:to-[#CCABDB]/90"
+                  >
+                    Submit Interest
+                  </Button>
+                </div>
+
+                {/* Footer Note */}
+                <p className="text-sm text-gray-500 text-center mt-4">
+                  * Required fields. We'll notify you as soon as the workshops are available.
+                </p>
+              </div>
             </div>
-            <div>
-              <Label htmlFor="phone">Phone Number</Label>
-              <Input id="phone" placeholder="Enter your phone number" className="border border-gray-300"/>
-            </div>
-            <div>
-              <Label htmlFor="workshop">Select Workshop</Label>
-              <Select value={selectedWorkshop} onValueChange={setSelectedWorkshop} className="border border-gray-300">
-                <SelectTrigger className="border border-gray-300 bg-white">
-                  <SelectValue placeholder="Choose a workshop" className="border border-gray-300 bg-white"/>
-                </SelectTrigger>
-                <SelectContent className="border border-gray-300 bg-white">
-                  <SelectItem value="yoga" >Yoga Workshop</SelectItem>
-                  <SelectItem value="pottery" >Pottery Workshop</SelectItem>
-                  <SelectItem value="arts" >Arts Workshop</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>     <div>
-              <Label htmlFor="experience">Previous Experience</Label>
-              <Input id="experience" placeholder="e.g., Beginner, Some experience" className="border border-gray-300"/>
-            </div>
-            <div>
-              <Label htmlFor="goals">Your Goals</Label>
-              <Textarea id="goals" placeholder="What do you hope to achieve from this workshop?" className="border border-gray-300"/>
-            </div>
-            <Button type="submit" className="w-full bg-gradient-to-r from-[#D0E6A5] to-[#CCABDB] hover:from-[#D0E6A5]/90 hover:to-[#CCABDB]/90">
-              Submit Enrollment
-            </Button>
-          </form>
-        </DialogContent>
-      </Dialog>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

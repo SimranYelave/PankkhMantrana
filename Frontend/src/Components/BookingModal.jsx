@@ -13,11 +13,37 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
         location: '',
         service: '',
         preferredDate: '',
-        preferredTime: '',
+        preferredTime: [],
         message: ''
     });
 
     const [errors, setErrors] = useState({});
+
+    // Generate time slots from 11:00 AM to 8:00 PM with 30-minute intervals
+    const generateTimeSlots = () => {
+        const slots = [];
+        for (let hour = 11; hour <= 20; hour++) {
+            const time12Hour = hour > 12 ? hour - 12 : hour;
+            const period = hour < 12 ? 'AM' : 'PM';
+
+            // Add :00 slot
+            slots.push({
+                value: `${hour.toString().padStart(2, '0')}:00`,
+                label: `${time12Hour}:00 ${period}`
+            });
+
+            // Add :30 slot (except for 8:00 PM which would be 8:30 PM)
+            if (hour < 20) {
+                slots.push({
+                    value: `${hour.toString().padStart(2, '0')}:30`,
+                    label: `${time12Hour}:30 ${period}`
+                });
+            }
+        }
+        return slots;
+    };
+
+    const timeSlots = generateTimeSlots();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -26,6 +52,22 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
         // Clear error when user starts typing
         if (errors[name]) {
             setErrors(prev => ({ ...prev, [name]: '' }));
+        }
+    };
+
+    const handleTimeCheckboxChange = (timeValue) => {
+        setFormData(prev => {
+            const currentTimes = prev.preferredTime;
+            const updatedTimes = currentTimes.includes(timeValue)
+                ? currentTimes.filter(time => time !== timeValue)
+                : [...currentTimes, timeValue];
+
+            return { ...prev, preferredTime: updatedTimes };
+        });
+
+        // Clear error when user selects a time
+        if (errors.preferredTime) {
+            setErrors(prev => ({ ...prev, preferredTime: '' }));
         }
     };
 
@@ -59,8 +101,8 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
             }
         }
 
-        if (!formData.preferredTime) {
-            newErrors.preferredTime = 'Preferred time is required';
+        if (!formData.preferredTime || formData.preferredTime.length === 0) {
+            newErrors.preferredTime = 'Please select at least one preferred time';
         }
 
         setErrors(newErrors);
@@ -77,7 +119,31 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
 
         const { name, email, phone, location, service, preferredDate, preferredTime, message } = formData;
 
-        const whatsappMessage = `Hello! I would like to book a session.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nLocation: ${location}\nService: ${service}\nPreferred Date: ${preferredDate}\nPreferred Time: ${preferredTime}\nAdditional Info: ${message}`;
+        // Format preferred times for display
+        const formattedTimes = preferredTime
+            .sort()
+            .map(time => {
+                const slot = timeSlots.find(slot => slot.value === time);
+                return slot ? slot.label : time;
+            })
+            .join(', ');
+
+        // Build WhatsApp message, excluding additional info if empty
+        let whatsappMessage = `Hello! I would like to book a session.\n\nName: ${name}\nEmail: ${email}`;
+
+        if (phone) {
+            whatsappMessage += `\nPhone: ${phone}`;
+        }
+
+        if (location) {
+            whatsappMessage += `\nLocation: ${location}`;
+        }
+
+        whatsappMessage += `\nService: ${service}\nPreferred Date: ${preferredDate}\nPreferred Times: ${formattedTimes}`;
+
+        if (message && message.trim()) {
+            whatsappMessage += `\nAdditional Info: ${message}`;
+        }
 
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(whatsappMessage);
@@ -96,7 +162,7 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
             location: '',
             service: '',
             preferredDate: '',
-            preferredTime: '',
+            preferredTime: [],
             message: ''
         });
 
@@ -236,7 +302,7 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
                     </div>
 
                     {/* Date and Time Row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 <Calendar className="w-4 h-4 inline mr-2" />
@@ -258,17 +324,57 @@ const BookingModal = ({ isOpen = true, onClose = () => { }, onSubmit = () => { }
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 <Clock className="w-4 h-4 inline mr-2" />
-                                Preferred Time *
+                                Preferred Time Slots * (Select multiple if flexible)
                             </label>
-                            <Input
-                                type="time"
-                                name="preferredTime"
-                                value={formData.preferredTime}
-                                onChange={handleInputChange}
-                                required
-                                placeholder="--:--"
-                                className={errors.preferredTime ? 'border-red-500' : ' border border-gray-300'}
-                            />
+                            <div className={`border rounded-lg ${errors.preferredTime ? 'border-red-500' : 'border-gray-300'} bg-gray-50`}>
+                                <div className="p-3 bg-white rounded-t-lg border-b border-gray-200">
+                                    <span className="text-sm text-gray-600">
+                                        {formData.preferredTime.length > 0
+                                            ? `${formData.preferredTime.length} slot${formData.preferredTime.length > 1 ? 's' : ''} selected`
+                                            : 'Select your preferred time slots'}
+                                    </span>
+                                </div>
+                                <div className="max-h-48 overflow-y-auto">
+                                    {timeSlots.map((slot) => (
+                                        <label
+                                            key={slot.value}
+                                            className="flex items-center justify-between p-3 hover:bg-blue-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors"
+                                        >
+                                            <span className="text-sm text-gray-700 font-medium">{slot.label}</span>
+                                            <input
+                                                type="checkbox"
+                                                checked={formData.preferredTime.includes(slot.value)}
+                                                onChange={() => handleTimeCheckboxChange(slot.value)}
+                                                className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-2"
+                                            />
+                                        </label>
+                                    ))}
+                                </div>
+                                {formData.preferredTime.length > 0 && (
+                                    <div className="p-3 bg-blue-50 rounded-b-lg">
+                                        <div className="flex flex-wrap gap-1">
+                                            {formData.preferredTime.sort().map(time => {
+                                                const slot = timeSlots.find(s => s.value === time);
+                                                return (
+                                                    <span
+                                                        key={time}
+                                                        className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800"
+                                                    >
+                                                        {slot?.label}
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => handleTimeCheckboxChange(time)}
+                                                            className="ml-1 text-blue-600 hover:text-blue-800"
+                                                        >
+                                                            ×
+                                                        </button>
+                                                    </span>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                             {errors.preferredTime && <p className="text-red-500 text-sm mt-1">{errors.preferredTime}</p>}
                         </div>
                     </div>

@@ -10,6 +10,37 @@ const Footer = () => {
     }
   }, []);
 
+  const handleMail = () => {
+    const toEmail = 'pankkhmantrana@gmail.com';
+    const fromEmail = 'client@example.com'; // Default sender email
+    const subject = 'Inquiry from Website';
+    const body = `Hello PankkhMantrana team,
+
+I am interested in your services and would like to get more information.
+
+Best regards,
+[Your Name]`;
+
+    // Check if device is mobile/tablet
+    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+      window.innerWidth <= 768;
+
+    // Check if Gmail is likely available (Chrome browser or signed into Google)
+    const isChrome = /Chrome/i.test(navigator.userAgent);
+    const isGoogleUser = document.cookie.includes('google') || window.gapi;
+
+    if (isMobile) {
+      // On mobile, try mailto with body content
+      window.location.href = `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    } else if (isChrome || isGoogleUser) {
+      // On desktop with Chrome or Google user, try Gmail web interface with body
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${toEmail}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
+    } else {
+      // Fallback to mailto for other desktop browsers with body
+      window.location.href = `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+  };
+
   return (
     <footer className="bg-gray-800 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,9 +50,9 @@ const Footer = () => {
             <h3 className="text-2xl font-bold playfair mb-4">
               PankkhMantrana
             </h3>
-            <p className="text-gray-300  leading-relaxed mb-6 max-w-md">
-              Empowering minds and enriching paths through professional counselling, 
-              career guidance, and holistic wellness services. Your journey to personal 
+            <p className="text-gray-300 leading-relaxed mb-6 max-w-md">
+              Empowering minds and enriching paths through professional counselling,
+              career guidance, and holistic wellness services. Your journey to personal
               and professional growth starts here.
             </p>
             <div className="flex space-x-4">
@@ -37,9 +68,13 @@ const Footer = () => {
               <a href="#" className="text-gray-400 hover:text-[#86e3ce] transition-colors duration-300">
                 <Linkedin className="w-6 h-6" />
               </a>
-              <a href="mailto:hello@pankhmantrana.com" className="text-gray-400 hover:text-[#86e3ce] transition-colors duration-300">
+              <button
+                onClick={handleMail}
+                className="text-gray-400 hover:text-[#86e3ce] transition-colors duration-300 cursor-pointer"
+                aria-label="Send Email"
+              >
                 <Mail className="w-6 h-6" />
-              </a>
+              </button>
             </div>
           </div>
 
@@ -48,7 +83,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold playfair mb-4">
               Quick Links
             </h4>
-            <ul className="space-y-2 ">
+            <ul className="space-y-2">
               {['home', 'about', 'services', 'testimonials', 'contact'].map((id) => (
                 <li key={id}>
                   <button
@@ -67,7 +102,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold playfair mb-4">
               Our Services
             </h4>
-            <ul className="space-y-2  text-sm">
+            <ul className="space-y-2 text-sm">
               <li className="text-gray-400"> <Link to="/personalcounselling">Personal Counselling</Link></li>
               <li className="text-gray-400"><Link to="/careercounselling">Career Counselling</Link></li>
               <li className="text-gray-400"> <Link to="/abroadcounselling" >Abroad Counselling</Link></li>

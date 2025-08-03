@@ -30,7 +30,8 @@ const InternshipPrograms = () => {
       description: "Gain hands-on experience in personal, career, and therapeutic counselling practices.",
       duration: "3-6 months",
       qualifications: ["3rd/4th Year Graduate", "Masters 1st/2nd Year"],
-      color: "bg-[#86E3CE]"
+      color: "bg-[#86E3CE]",
+      formUrl: "https://docs.google.com/forms/d/1dBU3347RkOKuQvJ1X2g5bkETiGdYUGsZDQP73zIm8C4/viewform"
     },
     {
       id: 'clinical',
@@ -39,7 +40,8 @@ const InternshipPrograms = () => {
       description: "Work alongside healthcare professionals in clinical settings and patient care.",
       duration: "4-8 months",
       qualifications: ["3rd/4th Year Graduate", "Masters 1st/2nd Year"],
-      color: "bg-[#CCABDB]"
+      color: "bg-[#CCABDB]",
+      formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc_Qb-MIwOF1Js90waxHYhOb8TDSjUGT6peUB_iVvMUzudn_w/viewform" // Replace with actual URL
     },
     {
       id: 'industrial',
@@ -48,7 +50,8 @@ const InternshipPrograms = () => {
       description: "Experience real-world industrial operations, management, and business processes.",
       duration: "3-6 months",
       qualifications: ["3rd/4th Year Graduate", "Masters 1st/2nd Year"],
-      color: "bg-[#FA897B]"
+      color: "bg-[#FA897B]",
+      formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSeEJPRg2mvefm7vzEpJOtJaLvmLqswYI_3nM0H7lhEM7Qk7gg/viewform" // Replace with actual URL
     },
     {
       id: 'marketing',
@@ -57,14 +60,23 @@ const InternshipPrograms = () => {
       description: "Learn digital marketing, brand management, and business development strategies.",
       duration: "2-4 months",
       qualifications: ["12th Pass", "BMM/B.Com/BA Students", "Degree College Students"],
-      color: "bg-[#CCABDB]"
+      color: "bg-[#CCABDB]",
+      formUrl: "https://docs.google.com/forms/d/e/1FAIpQLScUj0yljoAluGEp_H6QOBtSJ01ojbCT0M1e8xlosocMVeyY3A/viewform" // Replace with actual URL
     }
   ];
 
+  const handleApplyClick = (formUrl) => {
+    // Check if URL is provided and not a placeholder
+    if (formUrl && !formUrl.includes('YOUR_') && !formUrl.includes('_HERE')) {
+      window.open(formUrl, '_blank');
+    } else {
+      // Fallback to show form dialog for internships without URLs
+      setIsApplicationOpen(true);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
-      {/* Header */}
-
       {/* Banner with image */}
       <section className="relative py-40 overflow-hidden text-center">
         <img
@@ -78,12 +90,6 @@ const InternshipPrograms = () => {
           <p className="text-lg md:text-xl text-white mb-8">
             Launch your career with specialized internship opportunities across multiple domains.
           </p>
-          {/* <Button
-            onClick={() => setIsApplicationOpen(true)}
-            className="bg-white text-gray-800 hover:bg-gray-100 font-semibold px-6 py-3 rounded-full"
-          >
-            Apply for Internship
-          </Button> */}
         </div>
       </section>
 
@@ -117,7 +123,7 @@ const InternshipPrograms = () => {
                   ))}
                 </ul>
                 <Button
-                  onClick={() => setIsApplicationOpen(true)}
+                  onClick={() => handleApplyClick(internship.formUrl)}
                   className={`w-full ${internship.color} text-gray-800 hover:opacity-90`}
                 >
                   Apply Now
@@ -152,16 +158,6 @@ const InternshipPrograms = () => {
           ))}
         </div>
       </section>
-
-      {/* Floating Button */}
-      {/* <div className="fixed bottom-6 right-6 z-50">
-        <Button
-          onClick={() => setIsApplicationOpen(true)}
-          className="bg-[#FA897B] hover:bg-[#FA897B] text-white px-6 py-3 rounded-full shadow-md"
-        >
-          <GraduationCap className="w-5 h-5 mr-2" /> Apply Now
-        </Button>
-      </div> */}
 
       {/* Dialog Form */}
       <Dialog open={isApplicationOpen} onOpenChange={setIsApplicationOpen}>

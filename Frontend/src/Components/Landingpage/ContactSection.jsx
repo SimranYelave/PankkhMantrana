@@ -92,7 +92,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-800">Address</p>
-                    <p className="text-gray-600">123 Wellness Street, Mumbai, India</p>
+                    <p className="text-gray-600">Mumbai, Maharashtra</p>
                   </div>
                 </div>
               </div>

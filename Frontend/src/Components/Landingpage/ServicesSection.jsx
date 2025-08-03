@@ -37,7 +37,7 @@ const services = [
   },
   {
     icon: <Palette className="w-12 h-12" />,
-    title: 'Workshop Panels',
+    title: 'Workshops',
     description:
       'Creative workshops in Yoga, Pottery, and Arts to develop your skills and express creativity.',
     color:'bg-[#d0e6a5]',
@@ -45,7 +45,7 @@ const services = [
   },
   {
     icon: <GraduationCap className="w-12 h-12" />,
-    title: 'Internship Programs',
+    title: 'Hands-on learning programs',
     description:
       'Professional internship opportunities in Counselling, Clinical, Industrial, and Marketing fields.',
     color:'bg-[#fa897b]',
