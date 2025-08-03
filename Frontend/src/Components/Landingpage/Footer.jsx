@@ -62,7 +62,7 @@ Best regards,
               <a href="#" className="text-gray-400 hover:text-[#86e3ce] transition-colors duration-300">
                 <Twitter className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-[#86e3ce] transition-colors duration-300">
+              <a href="https://www.instagram.com/pankkhmantrana?igsh=MXFucDlnaHNtNHRjYQ==" className="text-gray-400 hover:text-[#86e3ce] transition-colors duration-300">
                 <Instagram className="w-6 h-6" />
               </a>
               <a href="#" className="text-gray-400 hover:text-[#86e3ce] transition-colors duration-300">
